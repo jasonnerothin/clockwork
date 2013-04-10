@@ -26,7 +26,7 @@ libraryDependencies ++= {
   Seq(
     "ch.qos.logback"    % "logback-classic"         % logbackVersion            % "compile",
     "joda-time"         % "joda-time"               % jodaTimeVersion           % "compile",
-     "org.joda"         % "joda-convert"            % jodaConvertVersion        % "compile",
+    "org.joda"          % "joda-convert"            % jodaConvertVersion        % "compile",
     "junit"             % "junit"                   % junitVersion              % "test",
     "org.mockito"       % "mockito-all"             % mockitoVersion            % "test",
     "org.scalatest"     % "scalatest_2.9.2"         % scalaTestVersion          % "test"
