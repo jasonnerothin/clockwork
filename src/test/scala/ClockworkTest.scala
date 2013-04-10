@@ -1,7 +1,6 @@
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.FunSuite
 import testutil.Generator
 
 /**
@@ -10,7 +9,7 @@ import testutil.Generator
  * Date: 4/9/13
  */
 @RunWith(classOf[JUnitRunner])
-sealed class ClockworkTest extends FunSuite with MockitoSugar with BeforeAndAfterEach {
+sealed class ClockworkTest extends FunSuite {
 
   val testInstance = new Object with Clockwork
   val generator = new Generator
