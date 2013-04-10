@@ -11,7 +11,9 @@ import org.joda.time.DateTime
  */
 class Generator{
 
-  case class A(b : Boolean, i : Int, l : Long, ch: Char)
+  case class A(b : Boolean, i : Int, l : Long, ch: Char){
+    val outer = Generator.this
+  }
 
   def someAs(): Seq[A] = {
     someAs(10)
@@ -24,6 +26,22 @@ class Generator{
         (Random.nextInt(26) + offset(Random.nextBoolean())).toChar
     )
   )
+
+  def randomInt() : Int = {
+    someAs(1) map(_.i) apply(0)
+  }
+
+  def randomPositiveInt() : Int = {
+    scala.math.abs(randomInt())
+  }
+
+  def randomBool() : Boolean = {
+    someAs(1) map{_.b} apply{0}
+  }
+
+  def randomLong() : Long = {
+    someAs(1) map{_.l} apply(0)
+  }
 
   private def offset(b: Boolean): Int = {
     if ( b ) 65 else 97
