@@ -41,5 +41,23 @@ sealed class ClockworkTest extends FunSuite {
     assert(actual == 2.0)
   }
 
+  test("tickTock advances clock") {
+    var min = generator.randomPositiveInt()
+    min = min % 1440
+    val actual = testInstance.tickTock(min)
+    if ((min + 1) % 1440 == 0)
+      assert(actual === 0)
+    else
+      assert(actual === min + 1)
+  }
+
+  test("tickTock + 1440 is the same value") {
+    var min = generator.randomPositiveInt()
+    min = min % 1440
+    val orig = min
+    for (i <- 1 to 1440) min = testInstance.tickTock(min)
+    assert( orig === min)
+  }
+
 
 }
