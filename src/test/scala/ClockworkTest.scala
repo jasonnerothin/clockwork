@@ -66,5 +66,4 @@ sealed class ClockworkTest extends FunSuite {
     assert( t2 === 1)
   }
 
-
 }
