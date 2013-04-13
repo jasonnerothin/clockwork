@@ -59,5 +59,12 @@ sealed class ClockworkTest extends FunSuite {
     assert( orig === min)
   }
 
+  test("tickTock crosses the date boundary correctly"){
+    var min = 1439
+    var t1 = testInstance.tickTock(min)
+    var t2 = testInstance.tickTock(t1)
+    assert( t2 === 1)
+  }
+
 
 }
