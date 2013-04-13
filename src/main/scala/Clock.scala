@@ -30,4 +30,10 @@ class Clock(time: Int) extends Clockwork{
     degreesOf(time) % 360
   }
 
+ /** @return minutes since midnight
+   */
+  def minutes(): Int = {
+    time
+  }
+
 }
