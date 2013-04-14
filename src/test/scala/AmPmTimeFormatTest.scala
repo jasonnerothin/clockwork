@@ -12,32 +12,26 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 sealed class AmPmTimeFormatTest extends FunSuite {
 
-  val testInstance = new Object with AmPmTimeFormat
-
   test("happy formats parse") {
-    val good = Array("11:11 PM", "7:01 am", " 9:13 PM")
+    val good = Array("11:11 PM", "7:01 am", " 9:13 PM", "12:01 aM", "12:00 am")
 
-    val t = testInstance.localTime(good(0))
-    val u = testInstance.localTime(good(1))
-    val v = testInstance.localTime(good(2))
+    val t = new AmPmTimeFormat(good(0))
+    val u = new AmPmTimeFormat(good(1))
+    val v = new AmPmTimeFormat(good(2))
+    val w = new AmPmTimeFormat(good(3))
+    val x = new AmPmTimeFormat(good(4))
 
-    assert( t.getSecondOfMinute == 0 )
-    assert( u.getSecondOfMinute == 0 )
-    assert( v.getSecondOfMinute == 0 )
-
-    assert( t.getMinuteOfHour == 11 )
-    assert( u.getMinuteOfHour == 1 )
-    assert( v.getMinuteOfHour == 13 )
-
-    assert( t.getHourOfDay == 23 )
-    assert( u.getHourOfDay == 7 )
-    assert( v.getHourOfDay == 21 )
+    assert( t.minuteOfDay() === 23 * 60 + 11 )
+    assert( u.minuteOfDay() === 7 * 60 + 1 )
+    assert( v.minuteOfDay() === 21 * 60 + 13 )
+    assert( w.minuteOfDay() === 1 )
+    assert( x.minuteOfDay() === 0 )
 
   }
 
   def verifyIAE(badString: String) {
     try {
-      testInstance.localTime(badString)
+      new AmPmTimeFormat(badString)
       assert(false, "Should have thrown already")
     } catch {
       case e: IllegalArgumentException => {
@@ -51,9 +45,8 @@ sealed class AmPmTimeFormatTest extends FunSuite {
 
   test("naughty formats do not parse") {
 
-    val bad = Array("13;13", "1111", "12:23:23")
+    Array("13;13", "1111", "12:23:23").map( verifyIAE(_) )
 
-    verifyIAE(bad(0))
   }
 
 }
