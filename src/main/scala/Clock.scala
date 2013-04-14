@@ -17,10 +17,28 @@ class Clock(time: Int) extends Clockwork{
     time
   }
 
+  /** @return the hour on a 12 hour clock
+    */
+  def hour(): Int = {
+    val hrOfDay = hourOfDay()
+    if( hrOfDay > 12 ) hrOfDay - 12
+    else hrOfDay
+  }
+
+ /** @return the hour of the day, counting from zero
+   */
+  def hourOfDay() : Int = {
+    time / 60
+  }
+
  /** @return a clock that is one minute ahead of this clock
    */
   def moveMinuteHand(): Clock = {
     new Clock(tickTock(time))
+  }
+
+  def minuteOfHour(): Int = {
+    time % 60
   }
 
   /** define two clocks as equal iff they correspond to the same nubmer of seconds from midnight
@@ -36,4 +54,13 @@ class Clock(time: Int) extends Clockwork{
     */
   override def hashCode = time.hashCode % MINUTES_PER_DAY
 
+  /** @return the time in "[H]H:MM AM|PM" format
+    */
+  override def toString : String = {
+    val buff = new StringBuffer()
+    buff.append(hour()).append(":").append(minuteOfHour()).append(" ")
+    if( hourOfDay() < 12 ) buff.append("AM")
+    else buff.append("PM")
+    buff.toString
+  }
 }
