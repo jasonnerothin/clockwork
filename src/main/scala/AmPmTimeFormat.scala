@@ -16,7 +16,7 @@ trait AmPmTimeFormat {
     try {
       format.parseLocalTime(date)
     } catch {
-      case _: RuntimeException =>
+      case e: IllegalArgumentException =>
         throw new IllegalArgumentException("Invalid date format. Expected hh:mm a, but got '" + dateStr + "'.")
     }
   }
