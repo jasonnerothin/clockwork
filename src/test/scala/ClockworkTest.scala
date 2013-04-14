@@ -36,8 +36,6 @@ sealed class ClockworkTest extends FunSuite {
     val degrees = 9
     val actual = testInstance.minutesOf(degrees)
 
-    System.err.println("actual is: " + actual)
-
     assert(actual == 2.0)
   }
 
