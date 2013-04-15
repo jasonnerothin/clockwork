@@ -9,7 +9,7 @@ object Main {
     * would need to move to get from the first time to the second. Reports the calculated result.
     * @param args ignored, if any
     */
-  def main(args: Array[String]){
+  def main(args: Array[String]) {
 
     print("START: ")
     val t0 = makeAClock()
@@ -23,10 +23,10 @@ object Main {
   }
 
   /** @return keep asking the user for input until s/he types in a valid time. */
-  def makeAClock():Clock = {
+  def makeAClock(): Clock = {
     println("Please enter a time with the following format: HH:mm AM|PM). Then hit enter.")
-    try{
-      new  Clock(new AmPmTimeFormat(readLine()).minuteOfDay())
+    try {
+      new Clock(new AmPmTimeFormat(readLine()).minuteOfDay())
     } catch {
       case e: IllegalArgumentException =>
         println(e.getMessage)
