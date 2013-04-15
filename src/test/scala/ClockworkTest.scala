@@ -22,23 +22,6 @@ sealed class ClockworkTest extends FunSuite {
     assert(actual === min * 6, "360/60 is still 6, right?")
   }
 
-  test("minutesOf divides by 6") {
-
-    val degrees = (generator.randomPositiveInt() % 360) * 6 // make sure it's an even multiple
-    val actual = testInstance.minutesOf(degrees)
-
-    assert(actual === degrees / 6)
-
-  }
-
-  test("minutesOf rounds appropriately") {
-
-    val degrees = 9
-    val actual = testInstance.minutesOf(degrees)
-
-    assert(actual == 2.0)
-  }
-
   test("tickTock advances clock") {
     var min = generator.randomPositiveInt()
     min = min % 1440

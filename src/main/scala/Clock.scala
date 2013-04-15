@@ -5,38 +5,34 @@
  */
 class Clock(time: Int) extends Clockwork{
 
-  /** @return the degrees that the minute hand has moved from midnight (turning clockwise)
-    */
+  /** @return the degrees that the minute hand has moved from midnight (turning clockwise) */
   def degrees(): Int = {
-    degreesOf(time) % 360
+    degreesOf(time)
   }
 
-  /** @return minutes since midnight
-    */
+  /** @return minutes since midnight */
   def minutes(): Int = {
     time
   }
 
-  /** @return the hour on a 12 hour clock
-    */
+  /** @return the hour on a 12 hour clock */
   def hour(): Int = {
     val hrOfDay = hourOfDay()
     if( hrOfDay > 12 ) hrOfDay - 12
     else hrOfDay
   }
 
- /** @return the hour of the day, counting from zero
-   */
+  /** @return the hour of the day, counting from zero */
   def hourOfDay() : Int = {
     time / 60
   }
 
- /** @return a clock that is one minute ahead of this clock
-   */
+  /** @return a clock that is one minute ahead of this clock */
   def moveMinuteHand(): Clock = {
     new Clock(tickTock(time))
   }
 
+  /** @return the minute of the hour */
   def minuteOfHour(): Int = {
     time % 60
   }
@@ -49,16 +45,21 @@ class Clock(time: Int) extends Clockwork{
     that.isInstanceOf[Clock] && this.hashCode() == that.asInstanceOf [Clock].hashCode()
   }
 
-  /** All most clocks care about is what time it is
+  /** All clocks care about is what time it is
     * @return hash this class' hashCode by time and time only
     */
   override def hashCode = time.hashCode % MINUTES_PER_DAY
 
-  /** @return the time in "[H]H:MM AM|PM" format
-    */
+  /** @return the time in "[H]H:MM AM|PM" format */
   override def toString : String = {
     val buff = new StringBuffer()
-    buff.append(hour()).append(":").append(minuteOfHour()).append(" ")
+    val hr = hour()
+    if( hr > 0 ) buff.append(hour())
+    else buff.append("12")
+    buff.append(":")
+    val min = minuteOfHour()
+    if( min < 10 ) buff.append("0")
+    buff.append(minuteOfHour()).append(" ")
     if( hourOfDay() < 12 ) buff.append("AM")
     else buff.append("PM")
     buff.toString

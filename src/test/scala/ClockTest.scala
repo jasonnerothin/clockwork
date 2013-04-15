@@ -42,7 +42,7 @@ sealed class ClockTest extends FunSuite{
     val clock1 = clock0.moveMinuteHand()
     val clock2 = clock1.moveMinuteHand()
 
-    assert( clock2.degrees() + (360 - clock0.degrees()) === 12 )
+    assert( clock2.degrees() + (360*24 - clock0.degrees()) === 12 )
 
   }
 
