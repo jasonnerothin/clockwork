@@ -1,10 +1,14 @@
 
-/**User: jason
+/** User: jason
   * Date: 4/14/13
   * Provides a main class.
   */
 object Main {
 
+  /** Asks the user for two times and then calculates the number of degrees the minute hand
+    * would need to move to get from the first time to the second. Reports the calculated result.
+    * @param args ignored, if any
+    */
   def main(args: Array[String]){
 
     print("START: ")
@@ -18,8 +22,7 @@ object Main {
 
   }
 
- /** @return keep asking the user for input until s/he types in a valid time..
-   */
+  /** @return keep asking the user for input until s/he types in a valid time. */
   def makeAClock():Clock = {
     println("Please enter a time with the following format: HH:mm AM|PM). Then hit enter.")
     try{
