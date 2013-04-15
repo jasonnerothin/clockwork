@@ -21,11 +21,11 @@ sealed class ClockTest extends FunSuite{
     assert( clock0.hashCode != clock1.hashCode)
   }
 
-  test("Clocks instantiated 1 day apart share the same equals and hashCode characteristics"){
-    val clock0= new Clock(123)
-    val clock1 = new Clock( 123 + 1440)
-    assert( clock0 == clock1)
-    assert( clock0.hashCode == clock1.hashCode)
+  test("Clocks cannot be instantiated with > 1439 minutes in them."){
+    val thrown = intercept[IllegalArgumentException]{
+      new Clock(1440)
+    }
+    assert( thrown != null )
   }
 
   test("Moving the minute hand returns a clock that is one minute ahead"){
