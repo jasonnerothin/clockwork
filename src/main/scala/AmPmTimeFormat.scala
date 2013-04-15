@@ -10,22 +10,25 @@ class AmPmTimeFormat(time: String) {
 
   validate()
 
- /** validate that the time string is in teh correct format
-   */
+  /** validate that the time string is in teh correct format
+    */
   def validate() {
     if (!format.matcher(time).matches()) {
       throw new IllegalArgumentException("Expected a time like '12:13 PM', but got '" + time + "' instead.")
     }
   }
 
- /** @return number of minutes since midnight
-   */
+  /** @return number of minutes since midnight
+    */
   def minuteOfDay(): Int = {
     def beforeNoon() = time.contains("am") || time.contains("AM") || time.contains("Am") || time.contains("aM")
     def hourPart() = time.substring(0, time.indexOf(":")).trim
     def hourOfDay(): Int = {
       val hour = Integer.parseInt(hourPart())
-      if (hour == 12 && beforeNoon()) 0
+      if (hour == 12) {
+        if (beforeNoon()) 0
+        else 12
+      }
       else if (!beforeNoon()) hour + 12
       else hour
     }
