@@ -1,14 +1,15 @@
 import java.util.regex.Pattern
 
-/* jason
- * Date: 4/9/13
- * TimeFormat mixin for the “[H]H:MM AM” requirement.
- */
+/** Author: jason
+  * Date: 4/9/13
+  * TimeFormat mixin for the “[H]H:MM AM” requirement.
+  */
 class AmPmTimeFormat(time: String) {
 
+  /** The format we require for time strings. */
   val format = Pattern.compile("^([ 0]?[1-9]|1[0-2])(:)[0-5][0-9]( )(AM|am|aM|Am|PM|pm|pM|Pm)$")
 
-  validate()
+  validate() // check that the format is correct "at time of construction"
 
   /** validate that the time string is in teh correct format
     */
