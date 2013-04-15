@@ -1,15 +1,12 @@
-/**
- * Created by IntelliJ IDEA.
- * User: jason
- * Date: 4/13/13
- * Time: 6:40 PM
- * Provides a mechanism for winding a clocks minute hand until the point that it matches with
- * another clocks minute hand.
- */
+/** User: jason
+  * Date: 4/13/13
+  * Provides a mechanism for winding a clocks minute hand until the point that it matches with
+  * another clocks minute hand.
+  */
 class ClockSynchronizer(clock0: Clock, clock1: Clock) extends Clockwork {
 
   /** Degree travel from the minute to travel from the time in clock0, to its position
-    * in clock1
+    * in clock1.
     *
     * @return the total number of degrees to travel the minute hand in clock0 to match
     *         the minute hand in clock1
