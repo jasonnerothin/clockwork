@@ -18,14 +18,13 @@ minute hand from one time to another.
 Ancillary details
 -----------------
 
-This app can be built using Scala's simple build tool (SBT) and tested and run with version 2.9.2 of scala
-on top of a bootstrapped 1.7 version of Oracle's OpenJDK. I expect it would work equally well with a 1.6
-JDK.
+This app was built and tested using SBT version 0.12.0, scala version 2.9.2 and a 1.7.0 version of Oracle's
+OpenJDK, bootstrapped for Mac OSX. I expect it would run equally well on a 1.6 JRE when built as a fat jar.
 
 To Run
 ------
 
-To run the application, open a command window in the project directory and type 'sbt'. Then, type
-'run-main Main' (no quotes) and hit enter. A number of other useful SBT tasks are available such as 'test',
-'compile', 'package', 'reload', etc...
+Open a command window in the project directory and type 'sbt'. Then, type 'run-main Main' (no quotes) and hit
+enter. A number of other useful SBT tasks are available such as 'clean', 'test', 'compile', 'package', 'reload',
+etc...
 
